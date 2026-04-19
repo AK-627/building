@@ -31,6 +31,12 @@
       "label": "SIZE",
       "value": "19 ACRES",
       "order": 2
+    },
+    {
+      "id": "7c31c1cc-c0b6-4c7f-8068-f88b67fbbeb1",
+      "label": "floors",
+      "value": "21",
+      "order": 3
     }
   ],
   "amenities": [
