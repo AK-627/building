@@ -3,7 +3,7 @@ import { mkdir, writeFile } from 'fs/promises';
 import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIronSession } from 'iron-session';
-import { sessionOptions } from '@/lib/session';
+import { getIronSessionOptions } from '@/lib/session';
 import type { SessionData } from '@/lib/types';
 
 export const runtime = 'nodejs';
@@ -34,6 +34,16 @@ function sanitizeExtension(ext: string) {
 }
 
 export async function POST(req: NextRequest) {
+  let sessionOptions;
+  try {
+    sessionOptions = getIronSessionOptions();
+  } catch {
+    return NextResponse.json(
+      { success: false, error: 'Server configuration error: SESSION_SECRET must be at least 32 characters.' },
+      { status: 500 },
+    );
+  }
+
   const probeRes = NextResponse.json({ success: true });
   const session = await getIronSession<SessionData>(req, probeRes, sessionOptions);
   if (!session.isAdmin) {
