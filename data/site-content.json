@@ -1,0 +1,108 @@
+{
+  "carousel": [
+    {
+      "id": "3a8e8d5a-3260-4e09-96f0-ea2d722d94d1",
+      "url": "/uploads/1776581700063-6ad42be1-3965-4d7d-8aa8-fbafe72dadad.jpg",
+      "alt": "",
+      "order": 0
+    },
+    {
+      "id": "07fb6086-9627-4928-b310-e3617e2e65eb",
+      "url": "/uploads/1776581735525-b561efde-4605-47b9-8289-15114d6dba75.jpg",
+      "alt": "",
+      "order": 1
+    }
+  ],
+  "stats": [
+    {
+      "id": "31a44321-4255-4a07-973f-52430698b909",
+      "label": "YEAR OF COMPLETION",
+      "value": "2029",
+      "order": 0
+    },
+    {
+      "id": "0a91d27e-62e3-418a-a4ac-75366994b9ce",
+      "label": "STARTING PRICE",
+      "value": "3.2  CR",
+      "order": 1
+    },
+    {
+      "id": "50924e18-7fde-4601-9a71-4a8d8d035897",
+      "label": "SIZE",
+      "value": "19 ACRES",
+      "order": 2
+    }
+  ],
+  "amenities": [
+    {
+      "id": "701672bb-1672-4475-b36a-eb3fc39b9de9",
+      "label": "Swimmin",
+      "description": "teh big gs",
+      "imageUrl": "/uploads/1776548233518-cf132110-531b-4fc9-8a7f-d7667d19efa3.jpg",
+      "order": 0
+    },
+    {
+      "id": "4e0f08b3-de04-4acd-af50-75272b08842f",
+      "label": "CAR RACING",
+      "description": "RACE WITH UR PEEPS",
+      "imageUrl": "/uploads/1776581849058-adb658cb-5cbb-4e00-bc9d-f74116f3d341.jpg",
+      "order": 1
+    }
+  ],
+  "unitTypes": [
+    {
+      "id": "027c0c8d-4dfc-4a5a-b23f-7771df4450bb",
+      "name": "2 bhk",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "carpetArea": "1200",
+      "builtUpArea": "1290",
+      "balcony": "0",
+      "blueprintUrls": [
+        "/uploads/1776548280491-d9e848cf-574d-4e50-a47e-a99cc526a1ba.jpg"
+      ],
+      "order": 0
+    },
+    {
+      "id": "36117fd6-cac9-47b4-a5c8-d070d10011ef",
+      "name": "3 BHK PREMIUIM",
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "carpetArea": "1400",
+      "builtUpArea": "1459",
+      "balcony": "1",
+      "blueprintUrls": [
+        "/uploads/1776581896474-4bc587b1-32f5-460b-9c2e-0f42e4c0d50f.jpg",
+        "/uploads/1776582324932-5b7d024c-84ec-427b-a738-d2e263ecbae3.jpg"
+      ],
+      "order": 1
+    }
+  ],
+  "projectPhotos": [
+    {
+      "id": "21c5202c-ce36-4f54-9d37-c66c19285fd0",
+      "url": "/uploads/1776548289229-b92cfe88-26b0-48a6-afc8-57cc67675c13.jpg",
+      "alt": "THE ROAD VIEW",
+      "order": 0
+    }
+  ],
+  "location": {
+    "id": "1f48501f-5658-4fb6-9f34-9a69ff8d48b4",
+    "embedUrl": "https://www.google.com/maps?q=Lodha%20Mirabelle&output=embed",
+    "address": "th e"
+  },
+  "greenCampus": [
+    {
+      "id": "047dbb15-8908-451a-8c33-3dbb86596a2d",
+      "icon": "💕",
+      "title": "Loving NEIGHBOURHOOD",
+      "description": "lovely neighbourhoood",
+      "order": 0
+    }
+  ],
+  "contact": {
+    "id": "8e9b03ae-2dac-4bc6-bd74-d07301c10c05",
+    "phoneNumber": "6364760701",
+    "whatsappMessage": "Hi, I am interested in LODHA MIRABELLE."
+  }
+}

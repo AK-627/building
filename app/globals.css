@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy: #0f2746;
+    --color-navy-light: #1d3f6e;
+    --color-navy-dark: #081a31;
+    --color-charcoal: #1c1917;
+    --color-green-campus: #166534;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-stone-900 font-sans;
+    letter-spacing: 0.005em;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-serif;
+    text-wrap: balance;
+    color: #1c1917;
+  }
+
+  h1 {
+    letter-spacing: 0.02em;
+    line-height: 1.08;
+  }
+
+  h2 {
+    letter-spacing: 0.015em;
+    line-height: 1.15;
+  }
+
+  h3 {
+    letter-spacing: 0.01em;
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.7;
+  }
+}
