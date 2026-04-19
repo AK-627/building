@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { enquirySchema } from '@/lib/validation';
+import { tryParseJsonResponse } from '@/lib/try-parse-json-response';
 
 interface FormState {
   name: string;
@@ -42,7 +43,17 @@ export default function EnquiryForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-      const data = await res.json();
+      const parsed = await tryParseJsonResponse(res);
+      if (!parsed.ok) {
+        setStatus('error');
+        setErrorMsg(
+          parsed.reason === 'empty'
+            ? 'Server returned no response. Check deployment logs and email (RESEND_API_KEY, ADMIN_EMAIL) on the host.'
+            : 'Could not read server response. Please try again or use WhatsApp.',
+        );
+        return;
+      }
+      const data = parsed.data as { success?: boolean; error?: string };
       if (data.success) {
         setStatus('success');
         setForm({ name: '', email: '', phone: '', message: '' });

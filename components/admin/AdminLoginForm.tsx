@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { tryParseJsonResponse } from '@/lib/try-parse-json-response';
 
 export default function AdminLoginForm() {
   const [password, setPassword] = useState('');
@@ -17,11 +18,29 @@ export default function AdminLoginForm() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/admin/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password }) });
-      const data = await res.json();
-      if (data.success) { window.location.href = '/admin'; }
-      else setError(data.error || 'Incorrect password');
-    } catch { setError('Network error. Please try again.'); }
+      const res = await fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password }),
+      });
+      const parsed = await tryParseJsonResponse(res);
+      if (!parsed.ok) {
+        setError(
+          parsed.reason === 'empty'
+            ? 'Server returned an empty response. Check Vercel env (SESSION_SECRET ≥32 chars, Supabase keys) and redeploy.'
+            : 'Server returned a non-JSON response. Check deployment logs.',
+        );
+        return;
+      }
+      const data = parsed.data as { success?: boolean; error?: string };
+      if (data.success) {
+        window.location.href = '/admin';
+      } else {
+        setError(data.error || 'Incorrect password');
+      }
+    } catch {
+      setError('Network error. Please try again.');
+    }
     finally { setLoading(false); }
   };
 

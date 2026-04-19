@@ -1,5 +1,6 @@
 'use client';
 import { useRef, useState, type ChangeEvent } from 'react';
+import { tryParseJsonResponse } from '@/lib/try-parse-json-response';
 
 interface CloudinaryUploaderProps {
   onUpload: (url: string) => void;
@@ -32,7 +33,15 @@ export default function CloudinaryUploader({ onUpload, label = 'Upload Image' }:
         body: formData,
       });
 
-      const data = await res.json();
+      const parsed = await tryParseJsonResponse(res);
+      if (!parsed.ok) {
+        throw new Error(
+          parsed.reason === 'empty'
+            ? 'Empty response from server (upload may be disabled on this host).'
+            : 'Invalid response from server.',
+        );
+      }
+      const data = parsed.data as { success?: boolean; url?: string; error?: string };
       if (!res.ok || !data?.success || !data?.url) {
         throw new Error(data?.error || 'Upload failed. Please try again.');
       }
