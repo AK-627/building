@@ -3,6 +3,7 @@ import { mkdir, writeFile } from 'fs/promises';
 import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 import { getIronSession } from 'iron-session';
+import { uploadImageBuffer, hasCloudinaryConfig } from '@/lib/cloudinary-upload';
 import { getIronSessionOptions } from '@/lib/session';
 import type { SessionData } from '@/lib/types';
 
@@ -31,6 +32,22 @@ function sanitizeExtension(ext: string) {
   const clean = ext.toLowerCase().replace(/[^a-z0-9.]/g, '');
   if (!clean.startsWith('.') || clean.length > 10) return '';
   return clean;
+}
+
+async function saveToLocalDisk(file: File): Promise<string> {
+  const mimeExt = extensionFromMime(file.type);
+  const nameExt = sanitizeExtension(path.extname(file.name || ''));
+  const ext = mimeExt || nameExt || '.bin';
+  const fileName = `${Date.now()}-${randomUUID()}${ext}`;
+
+  const uploadDir = path.join(process.cwd(), 'public', 'uploads');
+  const fullPath = path.join(uploadDir, fileName);
+
+  await mkdir(uploadDir, { recursive: true });
+  const bytes = Buffer.from(await file.arrayBuffer());
+  await writeFile(fullPath, bytes);
+
+  return `/uploads/${fileName}`;
 }
 
 export async function POST(req: NextRequest) {
@@ -64,20 +81,34 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: 'Image size must be 10 MB or less.' }, { status: 400 });
   }
 
-  const mimeExt = extensionFromMime(file.type);
-  const nameExt = sanitizeExtension(path.extname(file.name || ''));
-  const ext = mimeExt || nameExt || '.bin';
-  const fileName = `${Date.now()}-${randomUUID()}${ext}`;
+  try {
+    if (hasCloudinaryConfig()) {
+      const buffer = Buffer.from(await file.arrayBuffer());
+      const url = await uploadImageBuffer(buffer);
+      return NextResponse.json({ success: true, url });
+    }
 
-  const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-  const fullPath = path.join(uploadDir, fileName);
+    if (process.env.VERCEL === '1') {
+      return NextResponse.json(
+        {
+          success: false,
+          error:
+            'Image upload on Vercel requires Cloudinary. Set CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, and CLOUDINARY_API_SECRET.',
+        },
+        { status: 503 },
+      );
+    }
 
-  await mkdir(uploadDir, { recursive: true });
-  const bytes = Buffer.from(await file.arrayBuffer());
-  await writeFile(fullPath, bytes);
-
-  return NextResponse.json({
-    success: true,
-    url: `/uploads/${fileName}`,
-  });
+    const url = await saveToLocalDisk(file);
+    return NextResponse.json({ success: true, url });
+  } catch (err) {
+    console.error('Upload error:', err);
+    return NextResponse.json(
+      {
+        success: false,
+        error: err instanceof Error ? err.message : 'Upload failed. Please try again.',
+      },
+      { status: 500 },
+    );
+  }
 }
