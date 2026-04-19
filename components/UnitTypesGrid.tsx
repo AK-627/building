@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Lightbox from 'yet-another-react-lightbox';
+import type { Slide } from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
 import type { UnitType } from '@/lib/types';
 import { slugify } from '@/lib/slug';
@@ -15,14 +16,14 @@ interface UnitTypesGridProps {
 
 export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGridProps) {
   const [open, setOpen] = useState(false);
-  const [currentSlides, setCurrentSlides] = useState<any[]>([]);
+  const [currentSlides, setCurrentSlides] = useState<Slide[]>([]);
   const [index, setIndex] = useState(0);
 
   return (
     <div>
       <ScrollReveal>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {unitTypes.map((unit, idx) => (
+          {unitTypes.map((unit) => (
             <div
               key={unit.id}
               className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
