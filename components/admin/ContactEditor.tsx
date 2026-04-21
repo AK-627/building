@@ -10,7 +10,7 @@ interface ContactEditorProps {
 export default function ContactEditor({ initialContact }: ContactEditorProps) {
   const [phoneNumber, setPhoneNumber] = useState(initialContact?.phoneNumber ?? '');
   const [whatsappMessage, setWhatsappMessage] = useState(
-    initialContact?.whatsappMessage ?? 'Hi, I am interested in LODHA MIRABELLE.'
+    initialContact?.whatsappMessage ?? 'Hi, I am interested in LODHA SADAHALLI.'
   );
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [saving, setSaving] = useState(false);
@@ -67,7 +67,7 @@ export default function ContactEditor({ initialContact }: ContactEditorProps) {
           value={whatsappMessage}
           onChange={(e) => setWhatsappMessage(e.target.value)}
           rows={3}
-          placeholder="Hi, I am interested in LODHA MIRABELLE."
+          placeholder="Hi, I am interested in LODHA SADAHALLI."
           className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy"
         />
         <p className="text-xs text-slate-500 mt-1">This message will be pre-filled when users click the WhatsApp button.</p>

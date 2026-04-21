@@ -7,8 +7,10 @@ import {
   getLocationConfig,
   getGreenFeatures,
   getContactConfig,
+  getAboutConfig,
 } from '@/lib/content';
 import CarouselManager from '@/components/admin/CarouselManager';
+import AboutEditor from '@/components/admin/AboutEditor';
 import StatsEditor from '@/components/admin/StatsEditor';
 import AmenitiesManager from '@/components/admin/AmenitiesManager';
 import UnitTypesManager from '@/components/admin/UnitTypesManager';
@@ -27,6 +29,7 @@ export default async function AdminDashboard() {
     locationConfig,
     greenFeatures,
     contactConfig,
+    aboutConfig,
   ] = await Promise.all([
     getCarouselImages(),
     getKeyStats(),
@@ -36,13 +39,14 @@ export default async function AdminDashboard() {
     getLocationConfig(),
     getGreenFeatures(),
     getContactConfig(),
+    getAboutConfig(),
   ]);
 
   return (
     <div className="space-y-10">
       <div>
-        <h2 className="text-2xl font-serif font-bold text-navy mb-1">Dashboard</h2>
-        <p className="text-slate-500 text-sm">Manage all content for the LODHA MIRABELLE website.</p>
+        <h2 className="text-2xl font-sans font-bold tracking-wide text-navy mb-1">Dashboard</h2>
+        <p className="text-slate-500 text-sm">Manage all content for the LODHA SADAHALLI website.</p>
       </div>
 
       <section aria-labelledby="section-carousel">
@@ -52,6 +56,12 @@ export default async function AdminDashboard() {
         </div>
         <div className="bg-white rounded-xl border border-slate-200 p-6">
           <CarouselManager initialImages={carouselImages} />
+        </div>
+      </section>
+
+      <section aria-labelledby="section-about">
+        <div className="bg-white rounded-xl border border-slate-200">
+          <AboutEditor initialAbout={aboutConfig} />
         </div>
       </section>
 

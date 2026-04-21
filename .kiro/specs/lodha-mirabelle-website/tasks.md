@@ -1,8 +1,8 @@
-# Implementation Plan: LODHA MIRABELLE Website
+# Implementation Plan: LODHA SADAHALLI Website
 
 ## Overview
 
-Implement the LODHA MIRABELLE single-property real estate marketing website using Next.js 14 (App Router), TypeScript, Tailwind CSS, Supabase, Framer Motion, and the supporting services defined in the design document. Tasks are ordered to build foundational infrastructure first, then public sections, then the admin panel, and finally wire everything together with tests.
+Implement the LODHA SADAHALLI single-property real estate marketing website using Next.js 14 (App Router), TypeScript, Tailwind CSS, Supabase, Framer Motion, and the supporting services defined in the design document. Tasks are ordered to build foundational infrastructure first, then public sections, then the admin panel, and finally wire everything together with tests.
 
 ## Tasks
 
@@ -37,7 +37,7 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 2.5, 4.5, 6.5, 7.5, 7.6, 8.5, 9.4, 10.4, 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7**
     - File: `__tests__/content-store.property.test.ts`
     - Use `fc.record(...)` arbitraries matching each Supabase table row shape; insert via Supabase client, fetch back, assert deep equality
-    - Tag: `// Feature: lodha-mirabelle-website, Property 1: Content store round-trip`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 1: Content store round-trip`
 
 - [ ] 3. Enquiry validation schema and iron-session config
   - [ ] 3.1 Create Zod validation schema
@@ -55,11 +55,11 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 5.4**
     - File: `__tests__/enquiry-validation.property.test.ts`
     - Use `fc.subarray(['name','email','phone','message'])` for P5; `fc.emailAddress()` and `fc.string()` for P6
-    - Tag: `// Feature: lodha-mirabelle-website, Property 5: Enquiry required field validation`
-    - Tag: `// Feature: lodha-mirabelle-website, Property 6: Email format validation`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 5: Enquiry required field validation`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 6: Email format validation`
 
 - [ ] 4. Root layout, global styles, and fonts
-  - Write `app/layout.tsx` with root HTML structure, Google Fonts import (or `next/font`), Tailwind base styles, and metadata for LODHA MIRABELLE
+  - Write `app/layout.tsx` with root HTML structure, Google Fonts import (or `next/font`), Tailwind base styles, and metadata for LODHA SADAHALLI
   - Apply the navy blue / black / white / grey color scheme via Tailwind CSS custom properties
   - Ensure consistent typography hierarchy (headings, subheadings, body) is defined in Tailwind config
   - _Requirements: 14.1, 14.4_
@@ -85,7 +85,7 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 1.4**
     - File: `__tests__/carousel.property.test.ts`
     - Use `fc.array(carouselImageArb, { minLength: 1 })` to generate image lists; render `HeroCarousel` and assert dot count equals image count and active dot is marked
-    - Tag: `// Feature: lodha-mirabelle-website, Property 2: Carousel dot count matches image count`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 2: Carousel dot count matches image count`
 
   - [ ]* 6.3 Write unit tests for HeroCarousel
     - Test swipe navigation, arrow navigation, auto-advance with fake timers, and image fallback on error
@@ -120,8 +120,8 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 4.3**
     - File: `__tests__/contact-urls.property.test.ts`
     - Use `fc.string()` arbitraries for phone and message; assert URL structure and encoding
-    - Tag: `// Feature: lodha-mirabelle-website, Property 3: WhatsApp URL construction`
-    - Tag: `// Feature: lodha-mirabelle-website, Property 4: Tel URL construction`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 3: WhatsApp URL construction`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 4: Tel URL construction`
 
   - [ ] 9.3 Implement POST `/api/enquiry` route
     - Write `app/api/enquiry/route.ts`
@@ -180,7 +180,7 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 7.1**
     - File: `__tests__/section-rendering.property.test.ts`
     - Use `fc.array(amenityArb, { minLength: 1 })` to generate amenity lists; render `AmenitiesSection` and assert every item's label and image are present in the output
-    - Tag: `// Feature: lodha-mirabelle-website, Property 7: Section rendering completeness`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 7: Section rendering completeness`
 
   - [ ]* 12.3 Write unit tests for AmenitiesSection
     - Test: hover/tap shows description overlay
@@ -200,7 +200,7 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 8.2**
     - File: `__tests__/section-rendering.property.test.ts`
     - Use `fc.array(unitTypeArb, { minLength: 1 })`; render `UnitTypesPage` and assert every item's name, bedrooms, bathrooms, carpet area, and blueprint image are present
-    - Tag: `// Feature: lodha-mirabelle-website, Property 7: Section rendering completeness`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 7: Section rendering completeness`
 
   - [ ]* 13.3 Write unit tests for UnitTypesPage
     - Test: blueprint click opens lightbox
@@ -236,7 +236,7 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 10.3**
     - File: `__tests__/section-rendering.property.test.ts`
     - Use `fc.array(greenFeatureArb, { minLength: 1 })`; render `GreenCampusSection` and assert every item's icon, title, and description are present
-    - Tag: `// Feature: lodha-mirabelle-website, Property 7: Section rendering completeness`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 7: Section rendering completeness`
 
 - [ ] 16. Homepage assembly
   - Write `app/page.tsx` as a server component
@@ -263,7 +263,7 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 11.7**
     - File: `__tests__/admin-auth.property.test.ts`
     - Use `fc.string()` for arbitrary passwords; assert response body never contains raw password, hash, or `SESSION_SECRET`
-    - Tag: `// Feature: lodha-mirabelle-website, Property 8: Admin password never exposed`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 8: Admin password never exposed`
 
   - [ ]* 18.3 Write unit tests for admin login API
     - Test: correct password → 200 + cookie set; wrong password → 401; missing `ADMIN_PASSWORD_HASH` env var → 500 with generic error
@@ -369,7 +369,7 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 13.4**
     - File: `__tests__/accessibility.property.test.ts`
     - Enumerate rendered interactive elements; assert computed touch target size ≥ 44×44 CSS pixels for each
-    - Tag: `// Feature: lodha-mirabelle-website, Property 9: Touch target minimum size`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 9: Touch target minimum size`
 
   - [ ] 24.3 Audit and enforce focus-visible states
     - Ensure all interactive elements have a visible `focus-visible` outline or equivalent via Tailwind `focus-visible:` utilities
@@ -380,19 +380,19 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
     - **Validates: Requirements 14.5**
     - File: `__tests__/accessibility.property.test.ts`
     - Enumerate interactive elements; assert each has a non-zero `focus-visible` outline or equivalent style defined
-    - Tag: `// Feature: lodha-mirabelle-website, Property 10: Interactive element focus states`
+    - Tag: `// Feature: lodha-sadahalli-website, Property 10: Interactive element focus states`
 
 - [ ] 25. Final wiring and integration
   - [ ] 25.1 Verify all section anchor IDs match NavigationButtons targets
     - Confirm `id` attributes on each section in `app/page.tsx` match the `href` values in `NavigationButtons`
     - _Requirements: 3.3_
 
-  - [ ] 25.2 Verify LODHA MIRABELLE branding consistency
-    - Search all source files and confirm the property name always appears as "LODHA MIRABELLE" (all caps) in rendered content, page titles, metadata, and email templates
+  - [ ] 25.2 Verify LODHA SADAHALLI branding consistency
+    - Search all source files and confirm the property name always appears as "LODHA SADAHALLI" (all caps) in rendered content, page titles, metadata, and email templates
     - _Requirements: all_
 
   - [ ] 25.3 Add `<head>` metadata
-    - Set `title`, `description`, and Open Graph tags in `app/layout.tsx` using Next.js `Metadata` API with "LODHA MIRABELLE" as the property name
+    - Set `title`, `description`, and Open Graph tags in `app/layout.tsx` using Next.js `Metadata` API with "LODHA SADAHALLI" as the property name
     - _Requirements: 14.1_
 
   - [ ] 25.4 Create Vercel deployment configuration
@@ -411,4 +411,4 @@ Implement the LODHA MIRABELLE single-property real estate marketing website usin
 - Unit and integration tests use Jest + React Testing Library
 - The Supabase service role key must never be exposed to the browser — all DB access is server-side only
 - `revalidatePath('/')` is called after every admin save to keep the public site fresh within seconds
-- The property name "LODHA MIRABELLE" must always appear in all caps in all rendered content and code strings
+- The property name "LODHA SADAHALLI" must always appear in all caps in all rendered content and code strings

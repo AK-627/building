@@ -26,13 +26,13 @@ export async function generateMetadata({ params }: FloorPlanDetailPageProps): Pr
 
   if (!unit) {
     return {
-      title: 'Floor Plan - LODHA MIRABELLE',
-      description: 'View floor plan details for LODHA MIRABELLE unit types.',
+      title: 'Floor Plan - LODHA SADAHALLI',
+      description: 'View floor plan details for LODHA SADAHALLI unit types.',
     };
   }
 
   return {
-    title: `${unit.name} Floor Plan - LODHA MIRABELLE`,
+    title: `${unit.name} Floor Plan - LODHA SADAHALLI`,
     description: `Explore the ${unit.name} floor plan, unit details, photos, and enquiry option.`,
   };
 }
@@ -55,7 +55,7 @@ export default async function FloorPlanDetailPage({ params }: FloorPlanDetailPag
 
       <section className="bg-white border-b border-slate-200 px-4 py-12 md:py-16">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-slate-400 text-xs uppercase tracking-[0.3em] mb-3">LODHA MIRABELLE</p>
+          <p className="text-slate-400 text-xs uppercase tracking-[0.3em] mb-3">LODHA SADAHALLI</p>
           <h1 className="font-serif text-3xl md:text-5xl font-bold text-navy leading-tight">
             {unit.name}
           </h1>

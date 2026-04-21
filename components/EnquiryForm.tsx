@@ -90,7 +90,7 @@ export default function EnquiryForm() {
       </div>
       <div>
         <label htmlFor="message" className="block text-sm font-medium text-navy mb-1">Message *</label>
-        <textarea id="message" name="message" value={form.message} onChange={handleChange} placeholder="I am interested in LODHA MIRABELLE..." rows={4} className={`${inputClass} resize-none`} aria-describedby={errors.message ? 'message-error' : undefined} />
+        <textarea id="message" name="message" value={form.message} onChange={handleChange} placeholder="I am interested in LODHA SADAHALLI..." rows={4} className={`${inputClass} resize-none`} aria-describedby={errors.message ? 'message-error' : undefined} />
         {errors.message && <p id="message-error" className={errorClass}>{errors.message[0]}</p>}
       </div>
 

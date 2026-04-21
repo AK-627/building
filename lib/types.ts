@@ -59,6 +59,11 @@ export interface ContactConfig {
   whatsappMessage: string;
 }
 
+export interface AboutConfig {
+  id: string;
+  content: string;
+}
+
 export interface SiteContent {
   carousel: CarouselImage[];
   stats: KeyStat[];
@@ -68,6 +73,7 @@ export interface SiteContent {
   location: LocationConfig | null;
   greenCampus: GreenFeature[];
   contact: ContactConfig | null;
+  about: AboutConfig | null;
 }
 
 export interface SessionData {

@@ -71,7 +71,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
         >
           <img
             src={img.url}
-            alt={img.alt || 'LODHA MIRABELLE property'}
+            alt={img.alt || 'LODHA SADAHALLI property'}
             className="w-full h-full object-cover"
             onError={(e) => {
               (e.currentTarget as HTMLImageElement).src = '/images/placeholder.jpg';
@@ -82,10 +82,10 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
         </div>
       ))}
 
-      {/* LODHA MIRABELLE title overlay */}
+      {/* LODHA SADAHALLI title overlay */}
       <div className="absolute bottom-16 left-0 right-0 text-center z-10 px-4">
         <h1 className="font-serif text-4xl md:text-6xl font-bold text-white tracking-widest drop-shadow-lg">
-          LODHA MIRABELLE
+          LODHA SADAHALLI
         </h1>
         <p className="text-white/80 text-sm md:text-base mt-2 tracking-wider uppercase">
           Luxury Residences

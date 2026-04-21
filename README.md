@@ -1,6 +1,6 @@
-# LODHA MIRABELLE — Website
+# LODHA SADAHALLI — Website
 
-Single-property real estate marketing website for **LODHA MIRABELLE** luxury residences.
+Single-property real estate marketing website for **LODHA SADAHALLI** luxury residences.
 
 Built with Next.js 14 (App Router), TypeScript, Tailwind CSS, Supabase, Framer Motion, local uploads, and Resend.
 

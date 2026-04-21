@@ -24,7 +24,7 @@ function ensureConfigured() {
 /** Upload image bytes to Cloudinary; returns HTTPS URL (suitable for Supabase / img src). */
 export async function uploadImageBuffer(buffer: Buffer): Promise<string> {
   ensureConfigured();
-  const folder = process.env.CLOUDINARY_UPLOAD_FOLDER?.trim() || 'lodha-mirabelle';
+  const folder = process.env.CLOUDINARY_UPLOAD_FOLDER?.trim() || 'lodha-sadahalli';
 
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(

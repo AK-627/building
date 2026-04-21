@@ -8,6 +8,7 @@ import type {
   LocationConfig,
   GreenFeature,
   ContactConfig,
+  AboutConfig,
 } from './types';
 
 function logReadError(scope: string, error: unknown) {
@@ -150,5 +151,20 @@ export async function getContactConfig(): Promise<ContactConfig | null> {
     id: data.id,
     phoneNumber: data.phone_number,
     whatsappMessage: data.whatsapp_message,
+  };
+}
+
+export async function getAboutConfig(): Promise<AboutConfig | null> {
+  if (!supabase) return null;
+
+  const { data, error } = await supabase.from('about_config').select('*').limit(1).maybeSingle();
+  if (error) {
+    logReadError('getAboutConfig', error);
+    return null;
+  }
+  if (!data) return null;
+  return {
+    id: data.id,
+    content: data.content,
   };
 }

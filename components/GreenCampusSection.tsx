@@ -28,11 +28,11 @@ export default function GreenCampusSection({ features }: GreenCampusSectionProps
             <span className="inline-block px-4 py-1 bg-white/20 text-white text-xs font-semibold uppercase tracking-widest rounded-full mb-4">
               Sustainability
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white mb-2">
+            <h2 className="font-sans text-4xl md:text-5xl font-light tracking-wide text-white mb-2">
               Green Campus
             </h2>
             <p className="text-white/70 text-sm uppercase tracking-widest">
-              LODHA MIRABELLE — Living in Harmony with Nature
+              LODHA SADAHALLI — Living in Harmony with Nature
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -42,8 +42,8 @@ export default function GreenCampusSection({ features }: GreenCampusSectionProps
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-colors"
               >
                 <div className="text-4xl mb-3" aria-hidden="true">{feature.icon}</div>
-                <h3 className="font-semibold text-white text-lg mb-2">{feature.title}</h3>
-                <p className="text-white/70 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="font-sans font-bold tracking-wide text-white text-xl mb-2">{feature.title}</h3>
+                <p className="font-sans font-light text-white/80 text-sm md:text-base leading-relaxed">{feature.description}</p>
               </div>
             ))}
           </div>

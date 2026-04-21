@@ -8,6 +8,7 @@ import 'yet-another-react-lightbox/styles.css';
 import type { UnitType } from '@/lib/types';
 import { slugify } from '@/lib/slug';
 import ScrollReveal from '@/components/ScrollReveal';
+import LeadFormModal from '@/components/LeadFormModal';
 
 interface UnitTypesGridProps {
   unitTypes: UnitType[];
@@ -18,6 +19,34 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
   const [open, setOpen] = useState(false);
   const [currentSlides, setCurrentSlides] = useState<Slide[]>([]);
   const [index, setIndex] = useState(0);
+  
+  const [leadModalOpen, setLeadModalOpen] = useState(false);
+  const [hasCapturedLead, setHasCapturedLead] = useState(false);
+  const [pendingAction, setPendingAction] = useState<(() => void) | null>(null);
+
+  const handleView = (unit: UnitType) => {
+    const action = () => {
+      setCurrentSlides(unit.blueprintUrls.map((url) => ({ src: url, alt: `${unit.name} floor plan` })));
+      setIndex(0);
+      setOpen(true);
+    };
+
+    if (!hasCapturedLead && !detailPrefix) {
+      setPendingAction(() => action);
+      setLeadModalOpen(true);
+    } else {
+      action();
+    }
+  };
+
+  const handleLeadSuccess = () => {
+    setHasCapturedLead(true);
+    setLeadModalOpen(false);
+    if (pendingAction) {
+      pendingAction();
+      setPendingAction(null);
+    }
+  };
 
   return (
     <div>
@@ -44,11 +73,7 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
                 </Link>
               ) : (
                 <button
-                  onClick={() => {
-                    setCurrentSlides(unit.blueprintUrls.map((url) => ({ src: url, alt: `${unit.name} floor plan` })));
-                    setIndex(0);
-                    setOpen(true);
-                  }}
+                  onClick={() => handleView(unit)}
                   className="w-full aspect-[4/3] overflow-hidden block focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy"
                   aria-label={`View floor plans for ${unit.name}`}
                 >
@@ -98,11 +123,7 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
                   </Link>
                 ) : (
                   <button
-                    onClick={() => {
-                      setCurrentSlides(unit.blueprintUrls.map((url) => ({ src: url, alt: `${unit.name} floor plan` })));
-                      setIndex(0);
-                      setOpen(true);
-                    }}
+                    onClick={() => handleView(unit)}
                     className="mt-4 w-full min-h-[44px] py-2 border border-navy text-navy text-sm font-medium rounded-lg hover:bg-navy hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy"
                   >
                     View Floor Plan{unit.blueprintUrls.length > 1 ? 's' : ''}
@@ -119,6 +140,20 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
         index={index}
         slides={currentSlides}
       />
+      
+      {/* Lead Capture Modal */}
+      {leadModalOpen && (
+        <LeadFormModal
+          isOpen={leadModalOpen}
+          onClose={() => {
+            setLeadModalOpen(false);
+            setPendingAction(null);
+          }}
+          onSuccess={handleLeadSuccess}
+          title="Unlock Floor Plans"
+          context="Requested Floor Plan Details"
+        />
+      )}
     </div>
   );
 }

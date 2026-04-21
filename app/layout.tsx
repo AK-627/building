@@ -16,13 +16,13 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "LODHA MIRABELLE — Luxury Residences",
+  title: "LODHA SADAHALLI — Luxury Residences",
   description:
-    "Discover LODHA MIRABELLE — premium luxury residences offering world-class amenities, sustainable living, and exceptional design.",
+    "Discover LODHA SADAHALLI — premium luxury residences offering world-class amenities, sustainable living, and exceptional design.",
   openGraph: {
-    title: "LODHA MIRABELLE — Luxury Residences",
+    title: "LODHA SADAHALLI — Luxury Residences",
     description:
-      "Discover LODHA MIRABELLE — premium luxury residences offering world-class amenities, sustainable living, and exceptional design.",
+      "Discover LODHA SADAHALLI — premium luxury residences offering world-class amenities, sustainable living, and exceptional design.",
     type: "website",
   },
 };
@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${manrope.variable} ${cormorant.variable} antialiased bg-white text-stone-900 font-sans`}>
+      <body className={`${manrope.variable} ${cormorant.variable} antialiased bg-stone-100 text-stone-900 font-sans`}>
         {children}
       </body>
     </html>

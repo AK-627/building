@@ -1,8 +1,8 @@
-# Design Document — LODHA MIRABELLE Website
+# Design Document — LODHA SADAHALLI Website
 
 ## Overview
 
-LODHA MIRABELLE is a single-property real estate marketing website built with **Next.js 14 (App Router)** and **TypeScript**. The site has two distinct surfaces:
+LODHA SADAHALLI is a single-property real estate marketing website built with **Next.js 14 (App Router)** and **TypeScript**. The site has two distinct surfaces:
 
 1. **Public site** — a visually rich, scroll-animated marketing page targeting prospective apartment buyers.
 2. **Admin panel** — a password-protected dashboard at `/admin` for the site owner to manage all editable content without touching code.
@@ -312,7 +312,7 @@ create table green_features (
 create table contact_config (
   id uuid primary key default gen_random_uuid(),
   phone_number text not null,  -- E.164 format, e.g. "+919876543210"
-  whatsapp_message text not null default 'Hi, I am interested in LODHA MIRABELLE.'
+  whatsapp_message text not null default 'Hi, I am interested in LODHA SADAHALLI.'
 );
 ```
 
@@ -560,7 +560,7 @@ The testing strategy uses a **dual approach**: example-based unit/integration te
 
 **Tag format:** Each property test is tagged with a comment:
 ```
-// Feature: lodha-mirabelle-website, Property {N}: {property_text}
+// Feature: lodha-sadahalli-website, Property {N}: {property_text}
 ```
 
 **Properties to implement:**

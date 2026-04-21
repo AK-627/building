@@ -14,14 +14,14 @@ export default function AmenitiesSection({ amenities }: AmenitiesSectionProps) {
   if (amenities.length === 0) return null;
 
   return (
-    <section id="amenities" className="py-16 px-4 bg-slate-50">
+    <section id="amenities" className="py-16 px-4 bg-transparent">
       <div className="max-w-6xl mx-auto">
         <ScrollReveal>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy text-center mb-2">
             World-Class Amenities
           </h2>
           <p className="text-slate-500 text-center mb-10 text-sm uppercase tracking-widest">
-            LODHA MIRABELLE — Live the Life You Deserve
+            LODHA SADAHALLI — Live the Life You Deserve
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {amenities.map((amenity) => (

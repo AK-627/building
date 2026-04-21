@@ -65,7 +65,7 @@ export default function LocationEditor({ initialLocation }: LocationEditorProps)
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           rows={3}
-          placeholder="e.g. LODHA MIRABELLE, Thane West, Maharashtra 400601"
+          placeholder="e.g. LODHA SADAHALLI, Thane West, Maharashtra 400601"
           className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy"
         />
       </div>

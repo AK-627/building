@@ -7,7 +7,7 @@ import ContactSection from '@/components/ContactSection';
 import NavigationButtons from '@/components/NavigationButtons';
 
 export const metadata: Metadata = {
-  title: 'Floor Plans - LODHA MIRABELLE',
+  title: 'Floor Plans - LODHA SADAHALLI',
   description: 'Simple floor plans page with multiple blueprints, project photos, and enquiry contact below.',
 };
 
@@ -24,7 +24,7 @@ export default async function FloorPlansPage() {
 
       <section className="bg-white border-b border-slate-200 px-4 py-12 md:py-16">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-slate-400 text-xs uppercase tracking-[0.3em] mb-3">LODHA MIRABELLE</p>
+          <p className="text-slate-400 text-xs uppercase tracking-[0.3em] mb-3">LODHA SADAHALLI</p>
           <h1 className="font-serif text-3xl md:text-5xl font-bold text-navy leading-tight">
             Floor Plans
           </h1>

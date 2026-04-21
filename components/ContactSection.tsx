@@ -8,21 +8,21 @@ interface ContactSectionProps {
 }
 
 const DEFAULT_PHONE = '+919999999999';
-const DEFAULT_MESSAGE = 'Hi, I am interested in LODHA MIRABELLE. Please share more details.';
+const DEFAULT_MESSAGE = 'Hi, I am interested in LODHA SADAHALLI. Please share more details.';
 
 export default function ContactSection({ contact }: ContactSectionProps) {
   const phone = contact?.phoneNumber ?? DEFAULT_PHONE;
   const message = contact?.whatsappMessage ?? DEFAULT_MESSAGE;
 
   return (
-    <section id="contact" className="bg-slate-50 py-16 px-4">
+    <section id="contact" className="bg-transparent py-16 px-4">
       <div className="max-w-2xl mx-auto">
         <ScrollReveal>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy text-center mb-2">
             Get In Touch
           </h2>
           <p className="text-slate-500 text-center mb-8 text-sm uppercase tracking-widest">
-            LODHA MIRABELLE — We&apos;d love to hear from you
+            LODHA SADAHALLI — We&apos;d love to hear from you
           </p>
 
           {/* Quick contact buttons */}

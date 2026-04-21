@@ -48,7 +48,7 @@ export default function AdminLoginForm() {
     <div className="min-h-screen bg-stone-900 flex items-center justify-center px-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-sm">
         <div className="text-center mb-8">
-          <h1 className="font-serif text-2xl font-bold text-navy">LODHA MIRABELLE</h1>
+          <h1 className="font-serif text-2xl font-bold text-navy">LODHA SADAHALLI</h1>
           <p className="text-slate-500 text-sm mt-1">Admin Panel</p>
         </div>
         {expired && <div role="alert" className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-blue-900 text-sm">Session expired. Please log in again.</div>}

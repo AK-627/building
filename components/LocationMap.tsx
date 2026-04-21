@@ -36,7 +36,7 @@ export default function LocationMap({ embedUrl, address }: LocationMapProps) {
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="LODHA MIRABELLE Location"
+          title="LODHA SADAHALLI Location"
           onLoad={() => setLoaded(true)}
           className={`w-full h-full transition-opacity duration-500 ${loaded ? 'opacity-100' : 'opacity-0'}`}
         />

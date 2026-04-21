@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
-import { enquirySchema } from '@/lib/validation';
+import { z } from 'zod';
+
+const leadSchema = z.object({
+  name: z.string().min(2, 'Name is too short'),
+  email: z.string().email('Invalid email format'),
+  phone: z.string().min(10, 'Phone number must be at least 10 digits'),
+  context: z.string().optional(),
+});
 
 export async function POST(req: NextRequest) {
   let body: unknown;
@@ -10,20 +17,20 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: false, error: 'Invalid request body' }, { status: 400 });
   }
 
-  const result = enquirySchema.safeParse(body);
+  const result = leadSchema.safeParse(body);
   if (!result.success) {
     return NextResponse.json(
-      { success: false, errors: result.error.flatten().fieldErrors },
+      { success: false, error: 'Invalid fields provided.' },
       { status: 400 }
     );
   }
 
-  const { name, email, phone, message } = result.data;
+  const { name, email, phone, context } = result.data;
 
   try {
     if (!process.env.RESEND_API_KEY) {
       return NextResponse.json(
-        { success: false, error: 'Email service is not configured yet. Please contact us via WhatsApp or phone.' },
+        { success: false, error: 'Email service is not configured yet. Please contact us via WhatsApp.' },
         { status: 503 }
       );
     }
@@ -36,23 +43,22 @@ export async function POST(req: NextRequest) {
 
     const resend = new Resend(process.env.RESEND_API_KEY);
     await resend.emails.send({
-      from: 'LODHA SADAHALLI Enquiry <onboarding@resend.dev>',
+      from: 'LODHA SADAHALLI Lead Capture <onboarding@resend.dev>',
       to: process.env.ADMIN_EMAIL,
-      subject: `New Enquiry from ${name} — LODHA SADAHALLI`,
+      subject: `New Lead: ${context || 'Website Form'} — LODHA SADAHALLI`,
       html: `
-        <h2>New Enquiry — LODHA SADAHALLI</h2>
+        <h2>New Lead Capture — LODHA SADAHALLI</h2>
+        <p><strong>Source / Context:</strong> ${context || 'Website Form'}</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message.replace(/\n/g, '<br/>')}</p>
       `,
     });
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error('Resend error:', err);
     return NextResponse.json(
-      { success: false, error: 'Failed to send enquiry. Please try again or contact us via WhatsApp.' },
+      { success: false, error: 'Failed to save lead. Please try again or contact us via WhatsApp.' },
       { status: 500 }
     );
   }
