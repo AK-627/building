@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { supabase } from '@/lib/supabase';
+import { saveAboutConfig } from '@/lib/actions';
 import type { AboutConfig } from '@/lib/types';
 
 interface AboutEditorProps {
@@ -15,25 +15,11 @@ export default function AboutEditor({ initialAbout }: AboutEditorProps) {
   const [status, setStatus] = useState<'idle' | 'saving' | 'success' | 'error'>('idle');
 
   const handleSave = async () => {
-    if (!supabase) return;
+    if (!content.trim()) return;
     setStatus('saving');
 
     try {
-      if (initialAbout?.id) {
-        // Update existing
-        const { error } = await supabase
-          .from('about_config')
-          .update({ content })
-          .eq('id', initialAbout.id);
-        if (error) throw error;
-      } else {
-        // Insert new if the table is empty (unlikely with our migration, but safe)
-        const { error } = await supabase
-          .from('about_config')
-          .insert({ content });
-        if (error) throw error;
-      }
-
+      await saveAboutConfig(content.trim());
       setStatus('success');
       setTimeout(() => setStatus('idle'), 3000);
     } catch (err) {
@@ -43,7 +29,7 @@ export default function AboutEditor({ initialAbout }: AboutEditorProps) {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+    <div className="bg-white text-slate-900 rounded-2xl p-6 shadow-sm border border-slate-100">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h2 className="text-xl font-serif font-bold text-navy">About Section Configuration</h2>
@@ -69,13 +55,13 @@ export default function AboutEditor({ initialAbout }: AboutEditorProps) {
           value={content}
           onChange={(e) => setContent(e.target.value)}
           rows={10}
-          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-navy"
+          className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-navy focus:border-navy bg-white text-slate-900 placeholder:text-slate-400"
           placeholder="Enter the about section text here..."
         />
       </div>
       
       {status === 'error' && (
-        <p className="mt-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg">Failed to save changes. Please try again.</p>
+        <p className="mt-4 text-sm text-red-600 bg-red-50 p-3 rounded-lg border border-red-200">Failed to save changes. Please try again.</p>
       )}
     </div>
   );

@@ -36,7 +36,7 @@ An address of distinction, where legacy meets luxury.`;
       <div className="max-w-4xl mx-auto text-center">
         <ScrollReveal animation="fadeUp">
           <div className="flex flex-col items-center mb-12">
-            <span className="inline-block px-4 py-1.5 border border-luxury-gold/50 text-luxury-gold text-xs font-light uppercase tracking-[0.2em] mb-8">
+            <span className="inline-block px-4 py-1.5 border border-luxury-gold/50 rounded-full text-luxury-gold text-xs font-light uppercase tracking-[0.2em] mb-8">
               About the Project
             </span>
           </div>

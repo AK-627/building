@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Manrope, Cormorant_Garamond } from "next/font/google";
+import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { getContactConfig } from '@/lib/content';
 import FloatingContact from '@/components/FloatingContact';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
 
-const manrope = Manrope({
-  variable: "--font-inter",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
 });
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -59,7 +59,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className={`${manrope.variable} ${cormorant.variable} antialiased`}>
+      <body className={`${outfit.variable} ${playfair.variable} antialiased`}>
         {children}
         <FloatingContact contact={contact} />
         <ExitIntentPopup />

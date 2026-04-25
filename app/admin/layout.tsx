@@ -1,15 +1,15 @@
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 text-slate-900">
       <header className="bg-stone-900 text-white px-6 py-4 flex items-center justify-between">
         <div>
-          <h1 className="font-sans text-xl font-bold tracking-widest">LODHA SADAHALLI</h1>
+          <h1 className="font-sans text-xl font-bold tracking-widest text-white">LODHA SADAHALLI</h1>
           <p className="font-sans text-white/60 text-xs tracking-wider">Admin Panel</p>
         </div>
         <form action="/api/admin/logout" method="POST">
           <button
             type="submit"
-            className="min-h-[44px] px-4 py-2 border border-white/30 rounded-lg text-sm hover:bg-white/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            className="min-h-[44px] px-4 py-2 border border-white/30 rounded-lg text-sm text-white hover:bg-white/10 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
           >
             Sign Out
           </button>

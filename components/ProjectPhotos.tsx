@@ -33,23 +33,23 @@ export default function ProjectPhotos({ photos }: ProjectPhotosProps) {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {photos.map((photo, idx) => (
               <button
                 key={photo.id}
                 onClick={() => { setIndex(idx); setOpen(true); }}
-                className="relative aspect-square overflow-hidden group focus-visible:outline focus-visible:outline-2 focus-visible:outline-luxury-gold"
+                className="relative aspect-[4/5] sm:aspect-square overflow-hidden rounded-3xl group shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-luxury-gold"
                 aria-label={`View photo ${idx + 1}: ${photo.alt || 'LODHA SADAHALLI'}`}
               >
                 <Image
                   src={photo.url}
                   alt={photo.alt || 'LODHA SADAHALLI'}
                   fill
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-luxury-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <span className="text-luxury-stone border border-luxury-stone/30 px-6 py-2 text-xs uppercase tracking-[0.1em] backdrop-blur-sm">View</span>
+                <div className="absolute inset-0 bg-luxury-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center backdrop-blur-[2px]">
+                  <span className="text-luxury-stone border border-luxury-stone/30 px-6 py-2 rounded-full text-xs uppercase tracking-[0.1em] backdrop-blur-md">View</span>
                 </div>
               </button>
             ))}

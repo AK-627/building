@@ -60,7 +60,7 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
               key={unit.id}
-              className="bg-luxury-black border border-luxury-stone/10 hover:border-luxury-gold/50 transition-colors duration-500 overflow-hidden group"
+              className="bg-white/5 backdrop-blur-sm border border-white/10 hover:border-luxury-gold/50 hover:bg-white/10 transition-all duration-500 overflow-hidden group rounded-3xl shadow-2xl"
             >
               {/* Blueprint image */}
               {detailPrefix ? (
@@ -75,7 +75,7 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/images/placeholder.jpg'; }}
                   />
-                  <div className="absolute inset-0 bg-luxury-black/20 group-hover:bg-luxury-black/0 transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-luxury-black/30 group-hover:bg-luxury-black/0 transition-colors duration-500" />
                 </Link>
               ) : (
                 <button
@@ -89,7 +89,7 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/images/placeholder.jpg'; }}
                   />
-                  <div className="absolute inset-0 bg-luxury-black/20 group-hover:bg-luxury-black/0 transition-colors duration-500" />
+                  <div className="absolute inset-0 bg-luxury-black/30 group-hover:bg-luxury-black/0 transition-colors duration-500" />
                 </button>
               )}
               {/* Details */}
@@ -118,14 +118,14 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
                 {detailPrefix ? (
                   <Link
                     href={`${detailPrefix}/${slugify(unit.name)}`}
-                    className="mt-8 inline-flex w-full items-center justify-center py-3 border border-luxury-gold text-luxury-gold text-xs uppercase tracking-[0.1em] hover:bg-luxury-gold hover:text-luxury-black transition-colors"
+                    className="mt-8 inline-flex w-full items-center justify-center py-3 border border-luxury-gold text-luxury-gold text-xs uppercase tracking-[0.1em] hover:bg-luxury-gold hover:text-luxury-black transition-all duration-300 rounded-full"
                   >
                     View Details
                   </Link>
                 ) : (
                   <button
                     onClick={() => handleView(unit)}
-                    className="mt-8 w-full py-3 border border-luxury-gold text-luxury-gold text-xs uppercase tracking-[0.1em] hover:bg-luxury-gold hover:text-luxury-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-luxury-gold"
+                    className="mt-8 w-full py-3 border border-luxury-gold text-luxury-gold text-xs uppercase tracking-[0.1em] hover:bg-luxury-gold hover:text-luxury-black transition-all duration-300 rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-luxury-gold"
                   >
                     View Floor Plan{unit.blueprintUrls.length > 1 ? 's' : ''}
                   </button>

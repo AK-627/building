@@ -16,7 +16,7 @@ export default function UnitTypeDetail({ unit }: UnitTypeDetailProps) {
 
   return (
     <div className="space-y-12">
-      <div className="overflow-hidden border border-luxury-stone/10 bg-luxury-black shadow-2xl">
+      <div className="overflow-hidden rounded-[2rem] border border-luxury-stone/10 bg-luxury-black shadow-2xl">
         <button
           type="button"
           onClick={() => {
@@ -35,7 +35,7 @@ export default function UnitTypeDetail({ unit }: UnitTypeDetailProps) {
         </button>
 
         {unit.blueprintUrls.length > 1 && (
-          <div className="grid grid-cols-3 gap-2 p-4 bg-luxury-charcoal border-t border-luxury-stone/5">
+          <div className="grid grid-cols-3 gap-4 p-6 bg-white/5 border-t border-luxury-stone/5">
             {unit.blueprintUrls.map((url, idx) => (
               <button
                 key={`${url}-${idx}`}
@@ -44,7 +44,7 @@ export default function UnitTypeDetail({ unit }: UnitTypeDetailProps) {
                   setIndex(idx);
                   setOpen(true);
                 }}
-                className="overflow-hidden border border-luxury-stone/10 bg-luxury-black relative group"
+                className="overflow-hidden rounded-2xl border border-luxury-stone/10 bg-luxury-black relative group shadow-md"
               >
                 <img
                   src={url}
@@ -59,29 +59,29 @@ export default function UnitTypeDetail({ unit }: UnitTypeDetailProps) {
         )}
       </div>
 
-      <div className="border border-luxury-stone/10 bg-luxury-charcoal p-8 md:p-12 shadow-2xl relative">
+      <div className="rounded-[2rem] border border-luxury-stone/10 bg-white/5 backdrop-blur-md p-8 md:p-12 shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-luxury-gold/20 via-luxury-gold to-luxury-gold/20" />
         <h3 className="font-serif text-2xl font-light text-luxury-stone mb-8 tracking-wide text-center">Quick Unit Details</h3>
         <div className="grid gap-6 sm:grid-cols-2">
-          <div className="border border-luxury-stone/5 bg-luxury-black p-6 text-center">
+          <div className="rounded-2xl border border-luxury-stone/5 bg-luxury-black/50 p-6 text-center shadow-inner">
             <p className="text-luxury-stone/60 text-xs uppercase tracking-[0.2em]">Bedrooms</p>
             <p className="mt-3 text-luxury-gold font-light text-xl">{unit.bedrooms}</p>
           </div>
-          <div className="border border-luxury-stone/5 bg-luxury-black p-6 text-center">
+          <div className="rounded-2xl border border-luxury-stone/5 bg-luxury-black/50 p-6 text-center shadow-inner">
             <p className="text-luxury-stone/60 text-xs uppercase tracking-[0.2em]">Bathrooms</p>
             <p className="mt-3 text-luxury-gold font-light text-xl">{unit.bathrooms}</p>
           </div>
-          <div className="border border-luxury-stone/5 bg-luxury-black p-6 text-center">
+          <div className="rounded-2xl border border-luxury-stone/5 bg-luxury-black/50 p-6 text-center shadow-inner">
             <p className="text-luxury-stone/60 text-xs uppercase tracking-[0.2em]">Carpet area</p>
             <p className="mt-3 text-luxury-gold font-light text-xl">{unit.carpetArea}</p>
           </div>
-          <div className="border border-luxury-stone/5 bg-luxury-black p-6 text-center">
+          <div className="rounded-2xl border border-luxury-stone/5 bg-luxury-black/50 p-6 text-center shadow-inner">
             <p className="text-luxury-stone/60 text-xs uppercase tracking-[0.2em]">Built-up area</p>
             <p className="mt-3 text-luxury-gold font-light text-xl">{unit.builtUpArea ?? '—'}</p>
           </div>
         </div>
 
-        <div className="mt-6 border border-luxury-stone/5 bg-luxury-black p-6 text-center">
+        <div className="mt-6 rounded-2xl border border-luxury-stone/5 bg-luxury-black/50 p-6 text-center shadow-inner">
           <p className="text-luxury-stone/60 text-xs uppercase tracking-[0.2em]">Balcony</p>
           <p className="mt-3 text-luxury-gold font-light text-xl">{unit.balcony ?? 'Not specified'}</p>
         </div>

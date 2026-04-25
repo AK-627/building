@@ -194,3 +194,21 @@ export async function saveContactConfig(phoneNumber: string, whatsappMessage: st
   }
   touchPublicPages();
 }
+
+export async function saveAboutConfig(content: string) {
+  const supabase = requireSupabase();
+  const { data, error: selectError } = await supabase.from('about_config').select('id').limit(1).maybeSingle();
+  if (selectError) throw selectError;
+
+  if (data) {
+    const { error } = await supabase
+      .from('about_config')
+      .update({ content })
+      .eq('id', data.id);
+    if (error) throw error;
+  } else {
+    const { error } = await supabase.from('about_config').insert({ content });
+    if (error) throw error;
+  }
+  touchPublicPages();
+}

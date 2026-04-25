@@ -154,27 +154,27 @@ export default function UnitTypesManager({ initialUnitTypes }: UnitTypesManagerP
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div className="sm:col-span-2">
           <label className="block text-xs font-medium text-slate-600 mb-1">Name *</label>
-          <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="e.g. 2 BHK Premium" className="w-full min-h-[44px] px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
+          <input type="text" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="e.g. 2 BHK Premium" className="w-full min-h-[44px] px-3 py-2 border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
         </div>
         <div>
           <label className="block text-xs font-medium text-slate-600 mb-1">Bedrooms</label>
-          <input type="number" min="0" value={form.bedrooms} onChange={(e) => setForm({ ...form, bedrooms: e.target.value })} className="w-full min-h-[44px] px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
+          <input type="number" min="0" value={form.bedrooms} onChange={(e) => setForm({ ...form, bedrooms: e.target.value })} className="w-full min-h-[44px] px-3 py-2 border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
         </div>
         <div>
           <label className="block text-xs font-medium text-slate-600 mb-1">Bathrooms</label>
-          <input type="number" min="0" value={form.bathrooms} onChange={(e) => setForm({ ...form, bathrooms: e.target.value })} className="w-full min-h-[44px] px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
+          <input type="number" min="0" value={form.bathrooms} onChange={(e) => setForm({ ...form, bathrooms: e.target.value })} className="w-full min-h-[44px] px-3 py-2 border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
         </div>
         <div>
           <label className="block text-xs font-medium text-slate-600 mb-1">Carpet Area *</label>
-          <input type="text" value={form.carpetArea} onChange={(e) => setForm({ ...form, carpetArea: e.target.value })} placeholder="e.g. 850 sq ft" className="w-full min-h-[44px] px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
+          <input type="text" value={form.carpetArea} onChange={(e) => setForm({ ...form, carpetArea: e.target.value })} placeholder="e.g. 850 sq ft" className="w-full min-h-[44px] px-3 py-2 border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
         </div>
         <div>
           <label className="block text-xs font-medium text-slate-600 mb-1">Built-up Area (optional)</label>
-          <input type="text" value={form.builtUpArea} onChange={(e) => setForm({ ...form, builtUpArea: e.target.value })} placeholder="e.g. 1050 sq ft" className="w-full min-h-[44px] px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
+          <input type="text" value={form.builtUpArea} onChange={(e) => setForm({ ...form, builtUpArea: e.target.value })} placeholder="e.g. 1050 sq ft" className="w-full min-h-[44px] px-3 py-2 border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
         </div>
         <div>
           <label className="block text-xs font-medium text-slate-600 mb-1">Balcony (optional)</label>
-          <input type="text" value={form.balcony} onChange={(e) => setForm({ ...form, balcony: e.target.value })} placeholder="e.g. 1 Balcony" className="w-full min-h-[44px] px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
+          <input type="text" value={form.balcony} onChange={(e) => setForm({ ...form, balcony: e.target.value })} placeholder="e.g. 1 Balcony" className="w-full min-h-[44px] px-3 py-2 border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 rounded-lg text-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-navy" />
         </div>
         <div className="sm:col-span-2">
           <label className="block text-xs font-medium text-slate-600 mb-1">Blueprint Images *</label>

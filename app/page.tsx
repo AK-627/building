@@ -61,10 +61,10 @@ export default async function HomePage() {
       <ContactSection contact={contact} />
 
       {/* Floor Plans */}
-      <section id="floor-plans" className="py-24 bg-luxury-stone border-b border-luxury-charcoal/5">
+      <section id="floor-plans" className="py-24 bg-luxury-black border-b border-luxury-stone/5">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col items-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl font-light text-luxury-charcoal text-center mb-4">
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-luxury-stone text-center mb-4">
               Floor Plans
             </h2>
             <div className="w-16 h-[1px] bg-luxury-gold mb-6" />
