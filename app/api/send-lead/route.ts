@@ -28,17 +28,14 @@ export async function POST(req: NextRequest) {
   const { name, email, phone, context } = result.data;
 
   try {
-    if (!process.env.RESEND_API_KEY) {
-      return NextResponse.json(
-        { success: false, error: 'Email service is not configured yet. Please contact us via WhatsApp.' },
-        { status: 503 }
-      );
-    }
-    if (!process.env.ADMIN_EMAIL) {
-      return NextResponse.json(
-        { success: false, error: 'Admin email is not configured yet.' },
-        { status: 503 }
-      );
+    if (!process.env.RESEND_API_KEY || !process.env.ADMIN_EMAIL) {
+      console.warn('--- LEAD CAPTURED (Email Service Not Configured) ---');
+      console.warn(`Source: ${context || 'Website Form'}`);
+      console.warn(`Name: ${name}`);
+      console.warn(`Email: ${email}`);
+      console.warn(`Phone: ${phone}`);
+      console.warn('----------------------------------------------------');
+      return NextResponse.json({ success: true, warning: 'Email not configured. Lead logged to console.' });
     }
 
     const resend = new Resend(process.env.RESEND_API_KEY);
