@@ -1,3 +1,5 @@
+'use client';
+
 import ScrollReveal from '@/components/ScrollReveal';
 import type { KeyStat } from '@/lib/types';
 
@@ -9,15 +11,16 @@ export default function KeyStatistics({ stats }: KeyStatisticsProps) {
   if (stats.length === 0) return null;
 
   return (
-    <section className="bg-transparent py-16 px-4 border-b border-stone-200" id="key-stats">
-      <ScrollReveal>
-        <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+    <section className="bg-luxury-black py-24 px-4 border-b border-luxury-stone/5" id="key-stats">
+      <ScrollReveal animation="fadeUp">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-center md:justify-between items-center gap-12 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-luxury-stone/10">
           {stats.map((stat) => (
-            <div key={stat.id} className="text-center p-6 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-blue-50/50 hover:-translate-y-1 transition-transform duration-300">
-              <p className="font-sans text-4xl md:text-5xl font-extrabold tracking-tight text-navy mb-2 bg-gradient-to-r from-navy to-blue-600 bg-clip-text text-transparent">
+            <div key={stat.id} className="text-center flex-1 min-w-[200px] pt-8 md:pt-0">
+              <p className="font-serif text-5xl md:text-6xl font-light text-luxury-stone mb-4 tracking-wider">
                 {stat.value}
               </p>
-              <p className="text-stone-500 text-xs md:text-sm font-medium uppercase tracking-wider">
+              <div className="w-12 h-[1px] bg-luxury-gold mx-auto mb-4" />
+              <p className="text-luxury-gold/80 text-xs md:text-sm font-light uppercase tracking-[0.2em]">
                 {stat.label}
               </p>
             </div>

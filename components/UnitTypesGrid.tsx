@@ -9,6 +9,7 @@ import type { UnitType } from '@/lib/types';
 import { slugify } from '@/lib/slug';
 import ScrollReveal from '@/components/ScrollReveal';
 import LeadFormModal from '@/components/LeadFormModal';
+import { motion } from 'framer-motion';
 
 interface UnitTypesGridProps {
   unitTypes: UnitType[];
@@ -50,87 +51,87 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
 
   return (
     <div>
-      <ScrollReveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {unitTypes.map((unit) => (
-            <div
+      <ScrollReveal animation="fadeUp">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {unitTypes.map((unit, idx) => (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
               key={unit.id}
-              className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+              className="bg-luxury-black border border-luxury-stone/10 hover:border-luxury-gold/50 transition-colors duration-500 overflow-hidden group"
             >
               {/* Blueprint image */}
               {detailPrefix ? (
                 <Link
                   href={`${detailPrefix}/${slugify(unit.name)}`}
-                  className="w-full aspect-[4/3] overflow-hidden block focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy"
+                  className="w-full aspect-[4/3] overflow-hidden block relative"
                   aria-label={`View floor plans for ${unit.name}`}
                 >
                   <img
                     src={unit.blueprintUrls[0]}
                     alt={`${unit.name} floor plan`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/images/placeholder.jpg'; }}
                   />
+                  <div className="absolute inset-0 bg-luxury-black/20 group-hover:bg-luxury-black/0 transition-colors duration-500" />
                 </Link>
               ) : (
                 <button
                   onClick={() => handleView(unit)}
-                  className="w-full aspect-[4/3] overflow-hidden block focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy"
+                  className="w-full aspect-[4/3] overflow-hidden block relative focus-visible:outline focus-visible:outline-2 focus-visible:outline-luxury-gold"
                   aria-label={`View floor plans for ${unit.name}`}
                 >
                   <img
                     src={unit.blueprintUrls[0]}
                     alt={`${unit.name} floor plan`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/images/placeholder.jpg'; }}
                   />
+                  <div className="absolute inset-0 bg-luxury-black/20 group-hover:bg-luxury-black/0 transition-colors duration-500" />
                 </button>
               )}
               {/* Details */}
-              <div className="p-5">
-                <h3 className="font-serif text-xl font-bold text-navy mb-3">{unit.name}</h3>
-                <div className="grid grid-cols-2 gap-2 text-sm">
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <span className="text-navy font-semibold">{unit.bedrooms}</span>
-                    <span>Bedrooms</span>
+              <div className="p-8">
+                <h3 className="font-serif text-2xl font-light text-luxury-stone mb-6 tracking-wide">{unit.name}</h3>
+                <div className="flex flex-col gap-3 text-xs uppercase tracking-[0.1em]">
+                  <div className="flex justify-between border-b border-luxury-stone/10 pb-2">
+                    <span className="text-luxury-stone/60">Bedrooms</span>
+                    <span className="text-luxury-gold">{unit.bedrooms}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-slate-600">
-                    <span className="text-navy font-semibold">{unit.bathrooms}</span>
-                    <span>Bathrooms</span>
+                  <div className="flex justify-between border-b border-luxury-stone/10 pb-2">
+                    <span className="text-luxury-stone/60">Bathrooms</span>
+                    <span className="text-luxury-gold">{unit.bathrooms}</span>
                   </div>
-                  <div className="col-span-2 flex items-center gap-2 text-slate-600">
-                    <span className="text-navy font-semibold">Carpet:</span>
-                    <span>{unit.carpetArea}</span>
+                  <div className="flex justify-between border-b border-luxury-stone/10 pb-2">
+                    <span className="text-luxury-stone/60">Carpet Area</span>
+                    <span className="text-luxury-gold">{unit.carpetArea}</span>
                   </div>
                   {unit.builtUpArea && (
-                    <div className="col-span-2 flex items-center gap-2 text-slate-600">
-                      <span className="text-navy font-semibold">Built-up:</span>
-                      <span>{unit.builtUpArea}</span>
-                    </div>
-                  )}
-                  {unit.balcony && (
-                    <div className="col-span-2 flex items-center gap-2 text-slate-600">
-                      <span className="text-navy font-semibold">Balcony:</span>
-                      <span>{unit.balcony}</span>
+                    <div className="flex justify-between border-b border-luxury-stone/10 pb-2">
+                      <span className="text-luxury-stone/60">Built-up</span>
+                      <span className="text-luxury-gold">{unit.builtUpArea}</span>
                     </div>
                   )}
                 </div>
                 {detailPrefix ? (
                   <Link
                     href={`${detailPrefix}/${slugify(unit.name)}`}
-                    className="mt-4 inline-flex w-full min-h-[44px] items-center justify-center py-2 border border-navy text-navy text-sm font-medium rounded-lg hover:bg-navy hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy"
+                    className="mt-8 inline-flex w-full items-center justify-center py-3 border border-luxury-gold text-luxury-gold text-xs uppercase tracking-[0.1em] hover:bg-luxury-gold hover:text-luxury-black transition-colors"
                   >
-                    View Floor Plan{unit.blueprintUrls.length > 1 ? 's' : ''}
+                    View Details
                   </Link>
                 ) : (
                   <button
                     onClick={() => handleView(unit)}
-                    className="mt-4 w-full min-h-[44px] py-2 border border-navy text-navy text-sm font-medium rounded-lg hover:bg-navy hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy"
+                    className="mt-8 w-full py-3 border border-luxury-gold text-luxury-gold text-xs uppercase tracking-[0.1em] hover:bg-luxury-gold hover:text-luxury-black transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-luxury-gold"
                   >
                     View Floor Plan{unit.blueprintUrls.length > 1 ? 's' : ''}
                   </button>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </ScrollReveal>
@@ -139,6 +140,7 @@ export default function UnitTypesGrid({ unitTypes, detailPrefix }: UnitTypesGrid
         close={() => setOpen(false)}
         index={index}
         slides={currentSlides}
+        styles={{ container: { backgroundColor: 'rgba(10, 10, 10, 0.95)' } }}
       />
       
       {/* Lead Capture Modal */}

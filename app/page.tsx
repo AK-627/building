@@ -61,12 +61,15 @@ export default async function HomePage() {
       <ContactSection contact={contact} />
 
       {/* Floor Plans */}
-      <section id="floor-plans" className="py-20 bg-transparent">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-navy mb-4">Floor Plans</h2>
-            <p className="text-stone-600 max-w-2xl mx-auto">
-              Thoughtfully designed layouts maximizing space and natural light.
+      <section id="floor-plans" className="py-24 bg-luxury-stone border-b border-luxury-charcoal/5">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col items-center mb-16">
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-luxury-charcoal text-center mb-4">
+              Floor Plans
+            </h2>
+            <div className="w-16 h-[1px] bg-luxury-gold mb-6" />
+            <p className="text-luxury-gold/80 text-center text-xs md:text-sm uppercase tracking-[0.2em] max-w-2xl mx-auto">
+              Thoughtfully designed layouts maximizing space and natural light
             </p>
           </div>
           <UnitTypesGrid unitTypes={unitTypes} />
@@ -86,10 +89,16 @@ export default async function HomePage() {
       <GreenCampusSection features={greenFeatures} />
 
       {/* Footer */}
-      <footer className="bg-stone-900 py-8 px-4 text-center">
-        <p className="font-serif text-white text-lg tracking-widest mb-1">LODHA SADAHALLI</p>
-        <p className="text-white/40 text-xs uppercase tracking-widest">Luxury Residences</p>
-        <p className="text-white/30 text-xs mt-4">© {new Date().getFullYear()} LODHA SADAHALLI. All rights reserved.</p>
+      <footer className="bg-luxury-black py-16 px-4 text-center border-t border-luxury-gold/20">
+        <div className="w-12 h-[1px] bg-luxury-gold mx-auto mb-8" />
+        <p className="font-serif text-luxury-stone text-xl tracking-[0.2em] mb-2 font-light">LODHA SADAHALLI</p>
+        <p className="text-luxury-gold/60 text-xs uppercase tracking-[0.3em] mb-8">Luxury Residences</p>
+        <p className="text-luxury-stone/40 text-[10px] max-w-2xl mx-auto leading-loose mb-6 font-light uppercase tracking-wider">
+          Disclaimer: The images, content, and details provided on this website are for informational purposes only. 
+          This is not the official developer website. 
+          RERA Registration No: PRM/KA/RERA/1251/472/PR/XXXXXXXX/XXXXXX
+        </p>
+        <p className="text-luxury-gold/40 text-xs mt-8 uppercase tracking-widest">© {new Date().getFullYear()} LODHA SADAHALLI. All rights reserved.</p>
       </footer>
     </main>
   );

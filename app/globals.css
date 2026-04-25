@@ -4,11 +4,10 @@
 
 @layer base {
   :root {
-    --color-navy: #0f2746;
-    --color-navy-light: #1d3f6e;
-    --color-navy-dark: #081a31;
-    --color-charcoal: #1c1917;
-    --color-green-campus: #166534;
+    --color-luxury-black: #0a0a0a;
+    --color-luxury-charcoal: #1a1a1a;
+    --color-luxury-stone: #f5f5f0;
+    --color-luxury-gold: #D4AF37;
   }
 
   html {
@@ -16,35 +15,54 @@
   }
 
   body {
-    @apply bg-white text-stone-900 font-sans;
-    letter-spacing: 0.005em;
+    @apply bg-luxury-black text-luxury-stone font-sans selection:bg-luxury-gold selection:text-black;
+    letter-spacing: 0.01em;
     line-height: 1.6;
+  }
+
+  /* Custom Scrollbar for Luxury Feel */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D4AF37;
   }
 
   h1,
   h2,
-  h3 {
-    @apply font-serif;
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif font-light;
     text-wrap: balance;
-    color: #1c1917;
+    color: theme('colors.luxury.stone');
   }
 
   h1 {
-    letter-spacing: 0.02em;
-    line-height: 1.08;
+    letter-spacing: 0.05em;
+    line-height: 1.1;
   }
 
   h2 {
-    letter-spacing: 0.015em;
+    letter-spacing: 0.04em;
     line-height: 1.15;
   }
 
   h3 {
-    letter-spacing: 0.01em;
+    letter-spacing: 0.03em;
     line-height: 1.2;
   }
 
   p {
-    line-height: 1.7;
+    line-height: 1.8;
+    color: theme('colors.gray.400');
   }
 }

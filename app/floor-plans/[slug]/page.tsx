@@ -50,28 +50,29 @@ export default async function FloorPlanDetailPage({ params }: FloorPlanDetailPag
   const relatedUnits = unitTypes.filter((item) => item.id !== unit.id);
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-luxury-black text-luxury-stone font-sans">
       <NavigationButtons />
 
-      <section className="bg-white border-b border-slate-200 px-4 py-12 md:py-16">
+      <section className="bg-luxury-black border-b border-luxury-stone/5 px-4 pt-32 pb-16 md:pt-40 md:pb-24">
         <div className="max-w-6xl mx-auto text-center">
-          <p className="text-slate-400 text-xs uppercase tracking-[0.3em] mb-3">LODHA SADAHALLI</p>
-          <h1 className="font-serif text-3xl md:text-5xl font-bold text-navy leading-tight">
+          <p className="text-luxury-gold/80 text-xs uppercase tracking-[0.3em] mb-4">LODHA SADAHALLI</p>
+          <h1 className="font-serif text-4xl md:text-6xl font-light text-luxury-stone leading-tight mb-6">
             {unit.name}
           </h1>
-          <p className="text-slate-500 text-sm md:text-base mt-4 max-w-3xl mx-auto">
+          <div className="w-12 h-[1px] bg-luxury-gold mx-auto mb-6" />
+          <p className="text-luxury-stone/60 text-sm md:text-base max-w-3xl mx-auto font-light leading-relaxed">
             Simple listing page for this unit type with all floor plan images, facts, and contact below.
           </p>
-          <div className="mt-8 inline-flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="mt-12 inline-flex flex-col sm:flex-row items-center justify-center gap-6">
             <Link
               href="/floor-plans"
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-100 transition"
+              className="inline-flex items-center justify-center border border-luxury-stone/30 bg-transparent px-8 py-3 text-xs uppercase tracking-[0.1em] text-luxury-stone hover:bg-luxury-stone hover:text-luxury-black transition-colors duration-300"
             >
               Back to Floor Plans
             </Link>
             <Link
               href="/"
-              className="inline-flex items-center justify-center rounded-full border border-navy bg-navy text-white px-5 py-2.5 text-sm font-medium hover:bg-navy-light transition"
+              className="inline-flex items-center justify-center border border-luxury-gold bg-luxury-gold px-8 py-3 text-xs uppercase tracking-[0.1em] text-luxury-black hover:bg-transparent hover:text-luxury-gold transition-colors duration-300"
             >
               Home Page
             </Link>
@@ -79,15 +80,16 @@ export default async function FloorPlanDetailPage({ params }: FloorPlanDetailPag
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 py-10 md:py-12">
-        <div className="space-y-12">
+      <section className="max-w-6xl mx-auto px-4 py-16 md:py-24">
+        <div className="space-y-24">
           <UnitTypeDetail unit={unit} />
 
           {relatedUnits.length > 0 && (
             <div>
-              <div className="mb-6 text-sm text-slate-600">
-                <p className="font-semibold text-slate-900">Other available floor plans</p>
-                <p>Explore additional unit layouts with a clean, compact list.</p>
+              <div className="mb-12 text-center">
+                <p className="font-serif text-3xl font-light text-luxury-stone mb-4">Other Floor Plans</p>
+                <div className="w-12 h-[1px] bg-luxury-gold mx-auto mb-4" />
+                <p className="text-luxury-stone/60 font-light text-sm uppercase tracking-widest">Explore additional unit layouts</p>
               </div>
               <UnitTypesGrid unitTypes={relatedUnits} detailPrefix="/floor-plans" />
             </div>

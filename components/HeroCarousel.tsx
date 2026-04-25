@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import type { CarouselImage } from '@/lib/types';
 
 interface HeroCarouselProps {
@@ -9,9 +11,7 @@ interface HeroCarouselProps {
 
 export default function HeroCarousel({ images }: HeroCarouselProps) {
   const [current, setCurrent] = useState(0);
-  const touchStartX = useRef<number | null>(null);
   const autoPlayRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
   const total = images.length;
 
   const next = useCallback(() => {
@@ -22,117 +22,104 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
     setCurrent((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Auto-advance every 5 seconds
+  // Auto-advance every 6 seconds for a slower, more luxurious feel
   useEffect(() => {
     if (total === 0) return;
-    autoPlayRef.current = setInterval(next, 5000);
+    autoPlayRef.current = setInterval(next, 6000);
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
   }, [next, total]);
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (touchStartX.current === null) return;
-    const diff = touchStartX.current - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) next();
-      else prev();
-    }
-    touchStartX.current = null;
-  };
-
   if (total === 0) {
     return (
-      <div className="relative w-full h-[60vh] md:h-[80vh] bg-navy flex items-center justify-center">
-        <span className="text-white/40 text-lg">No images available</span>
+      <div className="relative w-full h-[70vh] md:h-[90vh] bg-luxury-black flex items-center justify-center">
+        <span className="text-luxury-stone/40 text-lg">No images available</span>
       </div>
     );
   }
 
   return (
     <div
-      className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden bg-navy"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
+      className="relative w-full h-[70vh] md:h-[90vh] overflow-hidden bg-luxury-black"
       aria-label="Property image carousel"
     >
       {/* Images */}
-      {images.map((img, idx) => (
-        <div
-          key={img.id}
-          className={`absolute inset-0 transition-opacity duration-700 ${
-            idx === current ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
-          aria-hidden={idx !== current}
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={current}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.5, ease: 'easeInOut' }}
+          className="absolute inset-0"
         >
-          <img
-            src={img.url}
-            alt={img.alt || 'LODHA SADAHALLI property'}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src = '/images/placeholder.jpg';
-            }}
+          <Image
+            src={images[current].url}
+            alt={images[current].alt || 'LODHA SADAHALLI property'}
+            fill
+            priority
+            className="object-cover animate-slow-pan"
           />
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-navy/20 via-transparent to-navy/60" />
-        </div>
-      ))}
+          {/* Gradient overlay - very dark at bottom */}
+          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/30 via-luxury-black/10 to-luxury-black/90" />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* LODHA SADAHALLI title overlay */}
-      <div className="absolute bottom-16 left-0 right-0 text-center z-10 px-4">
-        <h1 className="font-serif text-4xl md:text-6xl font-bold text-white tracking-widest drop-shadow-lg">
-          LODHA SADAHALLI
-        </h1>
-        <p className="text-white/80 text-sm md:text-base mt-2 tracking-wider uppercase">
-          Luxury Residences
-        </p>
+      {/* Title Overlay with Staggered Fade Up */}
+      <div className="absolute bottom-20 left-0 right-0 z-10 px-4 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: 'easeOut' }}
+            className="flex flex-col items-center"
+          >
+            <div className="w-12 h-[1px] bg-luxury-gold mb-6" />
+            <h1 className="font-serif text-5xl md:text-7xl font-light text-luxury-stone tracking-[0.1em] drop-shadow-2xl">
+              LODHA SADAHALLI
+            </h1>
+            <p className="text-luxury-gold text-xs md:text-sm mt-6 tracking-[0.3em] uppercase">
+              The Epitome of Luxury
+            </p>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* Prev / Next arrows */}
+      {/* Custom Minimalist Navigation */}
       {total > 1 && (
-        <>
+        <div className="absolute bottom-8 right-8 z-20 flex items-center gap-4">
           <button
             onClick={prev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-luxury-stone/20 text-luxury-stone hover:bg-luxury-stone hover:text-luxury-black transition-all duration-300"
             aria-label="Previous image"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M13 4L7 10L13 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M13 4L7 10L13 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
+          <div className="flex gap-2">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrent(idx)}
+                className={`h-[2px] transition-all duration-500 ${
+                  idx === current ? 'w-8 bg-luxury-gold' : 'w-4 bg-luxury-stone/30 hover:bg-luxury-stone/60'
+                }`}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
           <button
             onClick={next}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-white"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-luxury-stone/20 text-luxury-stone hover:bg-luxury-stone hover:text-luxury-black transition-all duration-300"
             aria-label="Next image"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path d="M7 4L13 10L7 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
-        </>
-      )}
-
-      {/* Navigation dots */}
-      {total > 1 && (
-        <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 z-20" role="tablist" aria-label="Carousel navigation">
-          {images.map((_, idx) => (
-            <button
-              key={idx}
-              role="tab"
-              aria-selected={idx === current}
-              aria-label={`Go to image ${idx + 1}`}
-              onClick={() => setCurrent(idx)}
-              className={`w-2 h-2 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-white ${
-                idx === current
-                  ? 'bg-white w-6'
-                  : 'bg-white/50 hover:bg-white/80'
-              }`}
-            />
-          ))}
         </div>
       )}
     </div>

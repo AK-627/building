@@ -1,4 +1,4 @@
-﻿import { getUnitTypes } from '@/lib/content';
+import { getUnitTypes } from '@/lib/content';
 import UnitTypesGrid from '@/components/UnitTypesGrid';
 import NavigationButtons from '@/components/NavigationButtons';
 import Link from 'next/link';
@@ -13,34 +13,34 @@ export default async function UnitTypesPage() {
   const unitTypes = await getUnitTypes();
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <main className="min-h-screen bg-luxury-black text-luxury-stone font-sans">
       <NavigationButtons />
 
-      <section className="bg-gradient-to-b from-navy-dark via-navy to-[#102c50] px-4 py-16 md:py-20 text-center">
+      <section className="bg-luxury-black border-b border-luxury-stone/5 px-4 pt-32 pb-16 md:pt-40 md:pb-24 text-center">
         <div className="max-w-4xl mx-auto">
-          <p className="text-blue-100/80 text-xs md:text-sm uppercase tracking-[0.22em] mb-3">
+          <p className="text-luxury-gold/80 text-xs md:text-sm uppercase tracking-[0.3em] mb-4">
             LODHA SADAHALLI
           </p>
-          <h1 className="font-serif text-4xl md:text-6xl font-semibold text-white leading-tight">
+          <h1 className="font-serif text-4xl md:text-6xl font-light text-luxury-stone leading-tight mb-6">
             Floor Plans
           </h1>
-          <p className="text-blue-100/85 mt-4 text-sm md:text-base uppercase tracking-[0.16em]">
+          <div className="w-12 h-[1px] bg-luxury-gold mx-auto mb-6" />
+          <p className="text-luxury-stone/60 mt-4 text-xs uppercase tracking-[0.2em]">
             Choose Your Home
           </p>
 
-          <div className="mt-8">
+          <div className="mt-12">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-full border border-blue-200/40 bg-white/10 px-5 py-2.5 text-sm font-medium text-blue-50 hover:bg-white/20 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-blue-200"
+              className="inline-flex items-center justify-center border border-luxury-stone/30 bg-transparent px-8 py-3 text-xs uppercase tracking-[0.1em] text-luxury-stone hover:bg-luxury-stone hover:text-luxury-black transition-colors duration-300"
             >
-              <span aria-hidden="true">&larr;</span>
               Back to Home
             </Link>
           </div>
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-4 py-12 md:py-14">
+      <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
         <UnitTypesGrid unitTypes={unitTypes} />
       </div>
     </main>

@@ -8,21 +8,19 @@ interface AboutSectionProps {
 }
 
 export default function AboutSection({ content }: AboutSectionProps) {
-  // We use a fallback just in case, but typically the parsed content from DB is shown.
   const displayContent = content || `Lodha Sadahalli – A New Benchmark of Luxury Living in Bangalore.
 
 Introducing Lodha Sadahalli, a landmark residential development inspired by the grandeur of Balmoral Castle. This iconic **80-acre** project beautifully blends Neo-Classical architecture with European garden estates. With **85% lush open spaces**, expansive residences ranging from **2,200 to 5,000 sq. ft.**, and a starting price of **₹3.5 Cr**, it offers a rare balance of luxury and nature.
 
 An address of distinction, where legacy meets luxury.`;
 
-  // Function to render markdown-like bold (**)
   const renderText = (text: string) => {
     return text.split('\n').map((line, i) => (
-      <p key={i} className="mb-4 text-stone-600 leading-relaxed text-base md:text-lg lg:text-xl">
+      <p key={i} className="mb-6 text-luxury-charcoal/80 leading-loose text-lg md:text-2xl font-light">
         {line.split(/(\*\*.*?\*\*)/).map((part, j) => {
           if (part.startsWith('**') && part.endsWith('**')) {
             return (
-              <strong key={j} className="font-semibold text-navy">
+              <strong key={j} className="font-normal text-luxury-gold">
                 {part.slice(2, -2)}
               </strong>
             );
@@ -34,13 +32,15 @@ An address of distinction, where legacy meets luxury.`;
   };
 
   return (
-    <section className="py-16 md:py-24 bg-transparent px-4 border-b border-stone-100">
+    <section className="py-24 md:py-40 bg-luxury-stone px-4 border-b border-luxury-charcoal/5">
       <div className="max-w-4xl mx-auto text-center">
-        <ScrollReveal>
-          <span className="inline-block px-4 py-1 bg-stone-100 text-stone-600 text-xs font-semibold uppercase tracking-widest rounded-full mb-6">
-            About the Project
-          </span>
-          <div className="text-left md:text-center">
+        <ScrollReveal animation="fadeUp">
+          <div className="flex flex-col items-center mb-12">
+            <span className="inline-block px-4 py-1.5 border border-luxury-gold/50 text-luxury-gold text-xs font-light uppercase tracking-[0.2em] mb-8">
+              About the Project
+            </span>
+          </div>
+          <div className="text-center font-serif">
             {renderText(displayContent)}
           </div>
         </ScrollReveal>

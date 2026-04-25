@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Lightbox from 'yet-another-react-lightbox';
 import 'yet-another-react-lightbox/styles.css';
+import Image from 'next/image';
 import type { ProjectPhoto } from '@/lib/types';
 import ScrollReveal from '@/components/ScrollReveal';
 
@@ -19,30 +20,37 @@ export default function ProjectPhotos({ photos }: ProjectPhotosProps) {
   const slides = photos.map((p) => ({ src: p.url, alt: p.alt || 'LODHA SADAHALLI' }));
 
   return (
-    <section id="gallery" className="py-16 px-4 bg-transparent">
-      <div className="max-w-6xl mx-auto">
-        <ScrollReveal>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-navy text-center mb-2">
-            Project Gallery
-          </h2>
-          <p className="text-slate-500 text-center mb-10 text-sm uppercase tracking-widest">
-            LODHA SADAHALLI — A Glimpse of Luxury
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+    <section id="gallery" className="py-24 px-4 bg-luxury-stone border-b border-luxury-charcoal/5">
+      <div className="max-w-7xl mx-auto">
+        <ScrollReveal animation="fadeUp">
+          <div className="flex flex-col items-center mb-16">
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-luxury-charcoal text-center mb-4">
+              Project Gallery
+            </h2>
+            <div className="w-16 h-[1px] bg-luxury-gold mb-6" />
+            <p className="text-luxury-gold/80 text-center text-xs md:text-sm uppercase tracking-[0.2em]">
+              LODHA SADAHALLI — A Glimpse of Luxury
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
             {photos.map((photo, idx) => (
               <button
                 key={photo.id}
                 onClick={() => { setIndex(idx); setOpen(true); }}
-                className="relative aspect-square overflow-hidden rounded-lg group focus-visible:outline focus-visible:outline-2 focus-visible:outline-navy min-h-[44px]"
+                className="relative aspect-square overflow-hidden group focus-visible:outline focus-visible:outline-2 focus-visible:outline-luxury-gold"
                 aria-label={`View photo ${idx + 1}: ${photo.alt || 'LODHA SADAHALLI'}`}
               >
-                <img
+                <Image
                   src={photo.url}
                   alt={photo.alt || 'LODHA SADAHALLI'}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  onError={(e) => { (e.currentTarget as HTMLImageElement).src = '/images/placeholder.jpg'; }}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-navy/0 group-hover:bg-navy/30 transition-colors duration-300" />
+                <div className="absolute inset-0 bg-luxury-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                  <span className="text-luxury-stone border border-luxury-stone/30 px-6 py-2 text-xs uppercase tracking-[0.1em] backdrop-blur-sm">View</span>
+                </div>
               </button>
             ))}
           </div>
@@ -53,6 +61,7 @@ export default function ProjectPhotos({ photos }: ProjectPhotosProps) {
         close={() => setOpen(false)}
         index={index}
         slides={slides}
+        styles={{ container: { backgroundColor: 'rgba(10, 10, 10, 0.95)' } }}
       />
     </section>
   );
