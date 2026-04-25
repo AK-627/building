@@ -33,7 +33,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
 
   if (total === 0) {
     return (
-      <div className="relative w-full h-[70vh] md:h-[90vh] bg-luxury-black flex items-center justify-center">
+      <div className="relative w-full h-[80vh] md:h-[90vh] bg-luxury-black flex items-center justify-center">
         <span className="text-luxury-stone/40 text-lg">No images available</span>
       </div>
     );
@@ -41,7 +41,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
 
   return (
     <div
-      className="relative w-full h-[70vh] md:h-[90vh] overflow-hidden bg-luxury-black"
+      className="relative w-full h-[85vh] md:h-[90vh] overflow-hidden bg-luxury-black"
       aria-label="Property image carousel"
     >
       {/* Images */}
@@ -62,12 +62,12 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
             className="object-cover animate-slow-pan"
           />
           {/* Gradient overlay - very dark at bottom */}
-          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/30 via-luxury-black/10 to-luxury-black/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-luxury-black/40 via-luxury-black/20 to-luxury-black/90" />
         </motion.div>
       </AnimatePresence>
 
       {/* Title Overlay with Staggered Fade Up */}
-      <div className="absolute bottom-20 left-0 right-0 z-10 px-4 md:px-12 max-w-7xl mx-auto flex flex-col items-center text-center">
+      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center px-4 mt-20 md:mt-0">
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -77,10 +77,10 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
             className="flex flex-col items-center"
           >
             <div className="w-12 h-[1px] bg-luxury-gold mb-6" />
-            <h1 className="font-serif text-5xl md:text-7xl font-light text-luxury-stone tracking-[0.1em] drop-shadow-2xl">
+            <h1 className="font-serif text-4xl sm:text-5xl md:text-7xl font-light text-luxury-stone tracking-[0.1em] drop-shadow-2xl px-2">
               LODHA SADAHALLI
             </h1>
-            <p className="text-luxury-gold text-xs md:text-sm mt-6 tracking-[0.3em] uppercase">
+            <p className="text-luxury-gold text-[10px] sm:text-xs md:text-sm mt-6 tracking-[0.2em] md:tracking-[0.3em] uppercase">
               The Epitome of Luxury
             </p>
           </motion.div>
@@ -89,10 +89,10 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
 
       {/* Custom Minimalist Navigation */}
       {total > 1 && (
-        <div className="absolute bottom-8 right-8 z-20 flex items-center gap-4">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-12 md:bottom-12 z-20 flex items-center gap-4">
           <button
             onClick={prev}
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-luxury-stone/20 text-luxury-stone hover:bg-luxury-stone hover:text-luxury-black transition-all duration-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-luxury-stone/20 text-luxury-stone hover:bg-luxury-stone hover:text-luxury-black transition-all duration-300 backdrop-blur-sm bg-luxury-black/20"
             aria-label="Previous image"
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
@@ -113,7 +113,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
           </div>
           <button
             onClick={next}
-            className="w-10 h-10 flex items-center justify-center rounded-full border border-luxury-stone/20 text-luxury-stone hover:bg-luxury-stone hover:text-luxury-black transition-all duration-300"
+            className="w-10 h-10 flex items-center justify-center rounded-full border border-luxury-stone/20 text-luxury-stone hover:bg-luxury-stone hover:text-luxury-black transition-all duration-300 backdrop-blur-sm bg-luxury-black/20"
             aria-label="Next image"
           >
             <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
