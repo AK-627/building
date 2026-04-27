@@ -41,7 +41,7 @@ export default function HeroCarousel({ images }: HeroCarouselProps) {
 
   return (
     <div
-      className="relative w-full h-[85vh] md:h-[90vh] overflow-hidden bg-luxury-black"
+      className="relative w-full h-[50vh] md:h-[90vh] overflow-hidden bg-luxury-black"
       aria-label="Property image carousel"
     >
       {/* Images */}

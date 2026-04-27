@@ -59,5 +59,5 @@ create table if not exists green_features (
 create table if not exists contact_config (
   id uuid primary key default gen_random_uuid(),
   phone_number text not null,
-  whatsapp_message text not null default 'Hi, I am interested in LODHA MIRABELLE.'
+  whatsapp_message text not null default 'Hi, I am interested in LODHA SADAHALLI'
 );
