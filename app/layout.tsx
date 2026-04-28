@@ -5,6 +5,8 @@ import { getContactConfig } from '@/lib/content';
 import FloatingContact from '@/components/FloatingContact';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
 
+export const dynamic = "force-dynamic";
+
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],

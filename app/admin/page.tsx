@@ -19,6 +19,8 @@ import LocationEditor from '@/components/admin/LocationEditor';
 import GreenCampusManager from '@/components/admin/GreenCampusManager';
 import ContactEditor from '@/components/admin/ContactEditor';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AdminDashboard() {
   const [
     carouselImages,

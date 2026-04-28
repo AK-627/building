@@ -11,6 +11,17 @@ import type {
   AboutConfig,
 } from './types';
 
+const PROJECT_NAME_TEXT_PATTERN = /lodha\s+mirab+el+e?/gi;
+const PROJECT_NAME_URL_PATTERN = /lodha(%20|\+)+mirab+el+e?/gi;
+
+function normalizeProjectText(value: string | null | undefined): string {
+  return (value ?? '').replace(PROJECT_NAME_TEXT_PATTERN, 'Lodha Sadahalli');
+}
+
+function normalizeProjectUrl(value: string | null | undefined): string {
+  return (value ?? '').replace(PROJECT_NAME_URL_PATTERN, 'Lodha%20Sadahalli');
+}
+
 function logReadError(scope: string, error: unknown) {
   const code = (error as { code?: string } | null)?.code;
   if (code === 'PGRST205') {
@@ -27,7 +38,7 @@ export async function getCarouselImages(): Promise<CarouselImage[]> {
     return (data ?? []).map((row) => ({
       id: row.id,
       url: row.url,
-      alt: row.alt,
+      alt: normalizeProjectText(row.alt),
       order: row.order,
     }));
   }
@@ -42,8 +53,8 @@ export async function getKeyStats(): Promise<KeyStat[]> {
   if (!error) {
     return (data ?? []).map((row) => ({
       id: row.id,
-      label: row.label,
-      value: row.value,
+      label: normalizeProjectText(row.label),
+      value: normalizeProjectText(row.value),
       order: row.order,
     }));
   }
@@ -58,8 +69,8 @@ export async function getAmenities(): Promise<Amenity[]> {
   if (!error) {
     return (data ?? []).map((row) => ({
       id: row.id,
-      label: row.label,
-      description: row.description,
+      label: normalizeProjectText(row.label),
+      description: normalizeProjectText(row.description),
       imageUrl: row.image_url,
       order: row.order,
     }));
@@ -75,7 +86,7 @@ export async function getUnitTypes(): Promise<UnitType[]> {
   if (!error) {
     return (data ?? []).map((row) => ({
       id: row.id,
-      name: row.name,
+      name: normalizeProjectText(row.name),
       bedrooms: row.bedrooms,
       bathrooms: row.bathrooms,
       carpetArea: row.carpet_area,
@@ -97,7 +108,7 @@ export async function getProjectPhotos(): Promise<ProjectPhoto[]> {
     return (data ?? []).map((row) => ({
       id: row.id,
       url: row.url,
-      alt: row.alt,
+      alt: normalizeProjectText(row.alt),
       order: row.order,
     }));
   }
@@ -116,8 +127,8 @@ export async function getLocationConfig(): Promise<LocationConfig | null> {
   if (!data) return null;
   return {
     id: data.id,
-    embedUrl: data.embed_url,
-    address: data.address,
+    embedUrl: normalizeProjectUrl(data.embed_url),
+    address: normalizeProjectText(data.address),
   };
 }
 
@@ -129,8 +140,8 @@ export async function getGreenFeatures(): Promise<GreenFeature[]> {
     return (data ?? []).map((row) => ({
       id: row.id,
       icon: row.icon,
-      title: row.title,
-      description: row.description,
+      title: normalizeProjectText(row.title),
+      description: normalizeProjectText(row.description),
       order: row.order,
     }));
   }
@@ -150,7 +161,7 @@ export async function getContactConfig(): Promise<ContactConfig | null> {
   return {
     id: data.id,
     phoneNumber: data.phone_number,
-    whatsappMessage: data.whatsapp_message,
+    whatsappMessage: normalizeProjectText(data.whatsapp_message),
   };
 }
 
@@ -165,6 +176,6 @@ export async function getAboutConfig(): Promise<AboutConfig | null> {
   if (!data) return null;
   return {
     id: data.id,
-    content: data.content,
+    content: normalizeProjectText(data.content),
   };
 }

@@ -20,6 +20,8 @@ import AmenitiesSection from '@/components/AmenitiesSection';
 import LocationSection from '@/components/LocationSection';
 import GreenCampusSection from '@/components/GreenCampusSection';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const [
     carouselImages,
